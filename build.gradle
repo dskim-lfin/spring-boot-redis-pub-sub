@@ -1,0 +1,36 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.3.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.teddy'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('io.lettuce:lettuce-core')
+    compile('com.google.code.gson:gson:2.8.0')
+    compile('org.apache.logging.log4j:log4j-core:2.9.1')
+    compileOnly('org.projectlombok:lombok')
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}

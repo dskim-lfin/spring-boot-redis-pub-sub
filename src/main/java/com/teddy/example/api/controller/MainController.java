@@ -19,14 +19,14 @@ public class MainController {
 
     @GetMapping("/string/{key}")
     public String getByString(@PathVariable(value = "key") String key) {
-        String value = mainService.get(key, String.class);
+        String value = mainService.get(key, String.class, "");
 
         return "string value : " + value;
     }
 
     @GetMapping("/boolean/{key}")
     public String getByBoolean(@PathVariable(value = "key") String key) {
-        Boolean value = mainService.get(key, Boolean.class);
+        Boolean value = mainService.get(key, Boolean.class, false);
 
         return "string value : " + value;
     }

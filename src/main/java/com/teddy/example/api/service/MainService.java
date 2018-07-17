@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.lang.reflect.Modifier;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
@@ -73,14 +74,18 @@ public class MainService {
         }
     }
 
-    public <T> T get(String key, Class<T> tClass) {
+    public <T> Optional<T> get(String key, Class<T> tClass) {
         try {
             String valueString = this.cacheMap.get(key);
-            return gson.fromJson(valueString, tClass);
+            return Optional.of(gson.fromJson(valueString, tClass));
         } catch (Exception e) {
             log.warn("get error > key " + key, e);
-            return null;
+            return Optional.empty();
         }
+    }
+
+    public <T> T get(String key, Class<T> tClass, T defaultValue) {
+        return get(key, tClass).orElse(defaultValue);
     }
 
     public Long publish(String key, String value) {

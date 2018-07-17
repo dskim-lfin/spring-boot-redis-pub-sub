@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 
 
 @Slf4j
-public abstract class CustomSubscriber implements RedisPubSubListener<String, String> {
+public class CustomSubscriber implements RedisPubSubListener<String, String> {
 
     @Override
     public void message(String channel, String message) {
